@@ -57,9 +57,15 @@ public class VehicleRepository {
                 .filter(updatedVehicle -> updatedVehicle.getId() == vehicle.getId())
                 .findFirst();
         if (vehicleToPartialUpdate.isPresent()) {
-            vehicleToPartialUpdate.get().setColor(vehicle.getColor());
-            vehicleToPartialUpdate.get().setModel(vehicle.getModel());
-            vehicleToPartialUpdate.get().setVehicleBrand(vehicle.getVehicleBrand());
+            if (vehicle.getColor() != null) {
+                vehicleToPartialUpdate.get().setColor(vehicle.getColor());
+            }
+            if (vehicle.getModel() != null) {
+                vehicleToPartialUpdate.get().setModel(vehicle.getModel());
+            }
+            if (vehicle.getVehicleBrand() != null) {
+                vehicleToPartialUpdate.get().setVehicleBrand(vehicle.getVehicleBrand());
+            }
         }
         return vehicleToPartialUpdate.isPresent();
     }
